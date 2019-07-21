@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
     window.onscroll = function () {
       window.scrollY > 300 ? header.classList.add('fixed') : header.classList.remove('fixed');
     }
+
   }
 }
 
