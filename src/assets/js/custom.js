@@ -47,4 +47,16 @@ $(window).load(function () {
             startPosition: 'URLHash'
         });
     }
+
+    //max height each div
+    if (window.innerWidth > 767) {
+        var h3height = 0;
+        $('#our_product aside').each(function () {
+            if (h3height < $(this).outerHeight()) {
+                h3height = $(this).outerHeight();
+            };
+        });
+        $('#our_product aside').height(h3height);
+    }
+
 });
