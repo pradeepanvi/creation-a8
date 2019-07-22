@@ -1,1 +1,125 @@
-<p>checkout works!</p>
+<div id="cart">
+    <div class="container">
+        <div class="head_area">
+            <h2>Cart</h2>
+            <p>See your products here</p>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <mat-accordion class="example-headers-align">
+                    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Checkout Options
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                <mat-icon>account_circle</mat-icon>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+
+                        <mat-form-field>
+                            <input matInput placeholder="First name">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input matInput type="number" min="1" placeholder="Age">
+                        </mat-form-field>
+
+                        <mat-action-row>
+                            <button mat-button color="primary" (click)="nextStep()">Next</button>
+                        </mat-action-row>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Billing Details
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                <mat-icon>map</mat-icon>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+
+                        <mat-form-field>
+                            <input matInput placeholder="Country">
+                        </mat-form-field>
+
+                        <mat-action-row>
+                            <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                            <button mat-button color="primary" (click)="nextStep()">Next</button>
+                        </mat-action-row>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Delivery Details
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                <mat-icon>date_range</mat-icon>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+
+
+                        <mat-action-row>
+                            <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                            <button mat-button color="primary" (click)="nextStep()">End</button>
+                        </mat-action-row>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Billing Method
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                <mat-icon>date_range</mat-icon>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+
+
+                        <mat-action-row>
+                            <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                            <button mat-button color="primary" (click)="nextStep()">End</button>
+                        </mat-action-row>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Payment Method
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                <mat-icon>date_range</mat-icon>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+
+
+                        <mat-action-row>
+                            <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                            <button mat-button color="primary" (click)="nextStep()">End</button>
+                        </mat-action-row>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Confirm Order
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                <mat-icon>date_range</mat-icon>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+
+
+                        <mat-action-row>
+                            <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                            <button mat-button color="primary" (click)="nextStep()">End</button>
+                        </mat-action-row>
+                    </mat-expansion-panel>
+
+                </mat-accordion>
+            </div>
+        </div>
+    </div>
+</div>
