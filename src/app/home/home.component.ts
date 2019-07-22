@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { GlobalService } from '../shared/global.service';
 
 @Component({
   selector: 'app-home',
@@ -6,16 +7,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  fixed_inner: boolean;
-  constructor() { }
+  constructor(public global: GlobalService) { }
 
   ngOnInit() {
-    this.fixed_inner = false;
+    this.global.fixed_inner = false;
   }
 
   ngOnDestroy() {
-    this.fixed_inner = true;
-    console.log(this.fixed_inner);
+    this.global.fixed_inner = true;
   }
 
 }
