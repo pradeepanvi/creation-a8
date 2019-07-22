@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { GlobalService } from './shared/global.service';
+import { Router, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,26 @@ import { GlobalService } from './shared/global.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'creation-a8';
-  fixed_inner: boolean;
-  constructor(public global: GlobalService) { }
+  previousUrl: any;
+  constructor(public global: GlobalService, private render: Renderer2, private router: Router) {
+    this.router.events.subscribe(
+      (event) => {
+        if (event instanceof NavigationStart) {
+          //for current page name
+          let currentUrlSlug = event.url.slice(1);
+          let currentUrlSlug2 = 'fixed-inner';
+          if (this.previousUrl) {
+            console.log('hit');
+            this.render.removeClass(document.querySelector('header'), currentUrlSlug2);
+          }
+          if (currentUrlSlug) {
+            this.render.addClass(document.querySelector('header'), currentUrlSlug2);
+          }
+          this.previousUrl = currentUrlSlug;
+        }
+      }
+    )
+  }
 
   ngOnInit() {
     var header = document.querySelector('header');
@@ -17,9 +35,6 @@ export class AppComponent implements OnInit {
     window.onscroll = function () {
       window.scrollY > 300 ? header.classList.add('fixed') : header.classList.remove('fixed');
     }
-
-    this.fixed_inner = this.global.fixed_inner
-
   }
 }
 
