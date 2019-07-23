@@ -16,11 +16,11 @@ export class AppComponent implements OnInit {
           //for current page name
           let currentUrlSlug = event.url.slice(1);
           let currentUrlSlug2 = 'fixed-inner';
+          console.log(currentUrlSlug);
           if (this.previousUrl) {
-            console.log('hit');
             this.render.removeClass(document.querySelector('header'), currentUrlSlug2);
           }
-          if (currentUrlSlug) {
+          if (currentUrlSlug && currentUrlSlug.includes('#') != true) {
             this.render.addClass(document.querySelector('header'), currentUrlSlug2);
           }
           this.previousUrl = currentUrlSlug;

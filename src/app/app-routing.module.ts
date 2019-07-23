@@ -7,10 +7,10 @@ import { CheckoutComponent } from './checkout/checkout.component';
 
 
 const routes: Routes = [
-  //{ path: '', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'shop', component: ShopComponent },
   { path: 'cart', component: CartComponent },
-  { path: '', component: CheckoutComponent }
+  { path: 'checkout', component: CheckoutComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,50 @@
+{
+    "title": "Our Clients",
+    "des": "Here are our some Prestigious Clients",
+    "client": [
+        {
+            "name": "Softona",
+            "url": "../../assets/images/client-logo1.jpg"
+        },
+        {
+            "name": "Web Excel Solution",
+            "url": "../../assets/images/client-logo2.jpg"
+        },
+        {
+            "name": "EasySol",
+            "url": "../../assets/images/client-logo3.jpg"
+        },
+        {
+            "name": "No 1",
+            "url": "../../assets/images/client-logo4.jpg"
+        },
+        {
+            "name": "Ind Innovations Pvt",
+            "url": "../../assets/images/client-logo5.jpg"
+        },
+        {
+            "name": "Radical Minds",
+            "url": "../../assets/images/client-logo6.jpg"
+        },
+        {
+            "name": "IQ Zone",
+            "url": "../../assets/images/client-logo7.jpg"
+        },
+        {
+            "name": "Idea",
+            "url": "../../assets/images/client-logo8.jpg"
+        },
+        {
+            "name": "KMS",
+            "url": "../../assets/images/client-logo9.jpg"
+        },
+        {
+            "name": "DM Group",
+            "url": "../../assets/images/client-logo10.jpg"
+        },
+        {
+            "name": "Premium Reseller",
+            "url": "../../assets/images/client-logo11.jpg"
+        }
+    ]
+}
