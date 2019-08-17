@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, AfterContentInit } from '@angular/core';
 import { GlobalService } from '../shared/global.service';
 import { HttpClient } from '@angular/common/http';
 import * as $ from 'jquery';
+import { FormGroup } from '@angular/forms';
 
 export interface homepage {
   welcome: {
@@ -41,6 +42,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
   ourProduct: any;
   ourService: any;
   ourClient: any;
+  askQF: FormGroup;
 
   constructor(private global: GlobalService, private http: HttpClient) {
   }
@@ -53,7 +55,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
         this.ourProduct = res.ourProduct;
         this.ourService = res.ourService;
         this.ourClient = res.ourClient;
-        console.log(this.welcome);
+        console.log(this.ourService);
       }
     )
     console.log(JSON.stringify(this.ourClient));
@@ -64,6 +66,12 @@ export class HomeComponent implements OnInit, AfterContentInit {
   }
 
   ngOnDestroy() {
+  }
+
+  private initForm() {
+    this.askQF = new FormGroup({
+
+    });
   }
 
 }

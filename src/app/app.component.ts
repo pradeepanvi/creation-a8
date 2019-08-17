@@ -19,9 +19,14 @@ export class AppComponent implements OnInit {
           console.log(currentUrlSlug);
           if (this.previousUrl) {
             this.render.removeClass(document.querySelector('header'), currentUrlSlug2);
+            this.render.removeClass(document.querySelector('header'), 'd-none');
           }
           if (currentUrlSlug && currentUrlSlug.includes('#') != true) {
             this.render.addClass(document.querySelector('header'), currentUrlSlug2);
+          }
+          if (currentUrlSlug.includes('admin')) {
+            this.render.addClass(document.querySelector('header'), 'd-none');
+            this.render.addClass(document.querySelector('footer'), 'd-none');
           }
           this.previousUrl = currentUrlSlug;
         }

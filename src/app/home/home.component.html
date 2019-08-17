@@ -71,7 +71,7 @@
             <p>Whether you would like to request a demo. We'd love to hear from you.</p>
         </div>
         <div class="form_sec col-md-8 offset-md-2">
-            <form class="bottomform">
+            <form [formGroup]="askQF" class="bottomform" (ngSubmit)="onSubmit()">
                 <aside>
                     <input class="form-control form-control-big" type="text" name="name" placeholder="Name"><span
                         class="help-block name">Please enter your Name</span>
