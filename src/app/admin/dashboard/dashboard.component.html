@@ -1,7 +1,7 @@
 <mat-tab-group>
     <mat-tab label="Home">
         <form [formGroup]="homeForm" class="example-form" (ngSubmit)="onSubmit()">
-            <div class="col border shadow mb-5 p-4">
+            <div class="col border shadow mb-5 p-4" formGroupName="welcome">
                 <h2>Welcome</h2>
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="Title" formControlName="title">
@@ -16,13 +16,14 @@
             <div class="col border shadow mb-5 p-4">
                 <h2>Slider</h2>
                 <div formArrayName="sliderItems" class="row">
-                    <div *ngFor="let item of slider; let i=index" class="col-sm-4">
+                    <div *ngFor="let item of sliderItemsArray.controls; let i=index" class="col-sm-4"
+                        [formGroupName]="i">
                         <div class="p-2 border mb-4">
                             <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Name" [value]="item.name" [formControlName]="i">
+                                <input matInput placeholder="Name" formControlName="name">
                             </mat-form-field>
                             <mat-form-field class="example-full-width">
-                                <input matInput placeholder="URL" [value]="item.url" [formControlName]="i">
+                                <input matInput placeholder="URL" formControlName="url">
                             </mat-form-field>
                             <button mat-button matSuffix color="warn" (click)="removeItem(i)">
                                 <mat-icon>close</mat-icon>
@@ -32,26 +33,26 @@
                 </div>
                 <button mat-raised-button matSuffix color="primary" (click)="addItem()">Add Slide</button>
             </div>
-            <div class="col border shadow mb-5 p-4">
+            <div class="col border shadow mb-5 p-4" formGroupName="ourProduct">
                 <h2>Our Product</h2>
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Title" formControlName="pTitle">
+                    <input matInput placeholder="Title" formControlName="title">
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
-                    <textarea matInput placeholder="Description" formControlName="pDes">{{ourProduct.des}}</textarea>
+                    <textarea matInput placeholder="Description" formControlName="des">{{ourProduct.des}}</textarea>
                 </mat-form-field>
                 <div formArrayName="productItems" class="row">
-                    <div *ngFor="let item of ourProduct.products; let i=index" class="col-sm-4">
+                    <div *ngFor="let item of productItemsArray.controls; let i=index" class="col-sm-4"
+                        [formGroupName]="i">
                         <div class="p-2 border mb-4">
                             <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Title" [value]="item.name" [formControlName]="i">
+                                <input matInput placeholder="Title" formControlName="name">
                             </mat-form-field>
                             <mat-form-field class="example-full-width">
-                                <input matInput placeholder="URL" [value]="item.url" [formControlName]="i">
+                                <input matInput placeholder="URL" formControlName="url">
                             </mat-form-field>
                             <mat-form-field class="example-full-width">
-                                <textarea matInput placeholder="Des" [value]="item.des"
-                                    [formControlName]="i">{{item.des}}</textarea>
+                                <textarea matInput placeholder="Des" formControlName="des">{{item.des}}</textarea>
                             </mat-form-field>
                             <button mat-button matSuffix color="warn" (click)="removeProduct(i)">
                                 <mat-icon>close</mat-icon>
@@ -61,26 +62,26 @@
                 </div>
                 <button mat-raised-button matSuffix color="primary" (click)="addProduct()">Add Product</button>
             </div>
-            <div class="col border shadow mb-5 p-4">
+            <div class="col border shadow mb-5 p-4" formGroupName="ourService">
                 <h2>Our Services</h2>
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Title" formControlName="sTitle">
+                    <input matInput placeholder="Title" formControlName="title">
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
-                    <textarea matInput placeholder="Description" formControlName="sDes">{{ourService.des}}</textarea>
+                    <textarea matInput placeholder="Description" formControlName="des">{{ourService.des}}</textarea>
                 </mat-form-field>
                 <div formArrayName="serviceItems" class="row">
-                    <div *ngFor="let item of ourService.service; let i=index" class="col-sm-4">
+                    <div *ngFor="let item of serviceItemsArray.controls; let i=index" class="col-sm-4"
+                        [formGroupName]="i">
                         <div class="p-2 border mb-4">
                             <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Title" [value]="item.name" [formControlName]="i">
+                                <input matInput placeholder="Title" formControlName="name">
                             </mat-form-field>
                             <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Icon" [value]="item.icon" [formControlName]="i">
+                                <input matInput placeholder="Icon" formControlName="icon">
                             </mat-form-field>
                             <mat-form-field class="example-full-width">
-                                <textarea matInput placeholder="Des" [value]="item.des"
-                                    [formControlName]="i">{{item.des}}</textarea>
+                                <textarea matInput placeholder="Des" formControlName="des">{{item.des}}</textarea>
                             </mat-form-field>
                             <button mat-button matSuffix color="warn" (click)="removeService(i)">
                                 <mat-icon>close</mat-icon>
@@ -90,22 +91,23 @@
                 </div>
                 <button mat-raised-button matSuffix color="primary" (click)="addService()">Add Service</button>
             </div>
-            <div class="col border shadow mb-5 p-4">
+            <div class="col border shadow mb-5 p-4" formGroupName="ourClient">
                 <h2>Our Clients</h2>
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Title" formControlName="cTitle">
+                    <input matInput placeholder="Title" formControlName="title">
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
-                    <textarea matInput placeholder="Description" formControlName="cDes">{{ourClient.des}}</textarea>
+                    <textarea matInput placeholder="Description" formControlName="des">{{ourClient.des}}</textarea>
                 </mat-form-field>
                 <div formArrayName="clientItems" class="row">
-                    <div *ngFor="let item of ourClient.client; let i=index" class="col-sm-4">
+                    <div *ngFor="let item of clientItemsArray.controls; let i=index" class="col-sm-4"
+                        [formGroupName]="i">
                         <div class="p-2 border mb-4">
                             <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Name" [value]="item.name" [formControlName]="i">
+                                <input matInput placeholder="Name" formControlName="name">
                             </mat-form-field>
                             <mat-form-field class="example-full-width">
-                                <input matInput placeholder="URL" [value]="item.url" [formControlName]="i">
+                                <input matInput placeholder="URL" formControlName="url">
                             </mat-form-field>
                             <button mat-button matSuffix color="warn" (click)="removeClient(i)">
                                 <mat-icon>close</mat-icon>

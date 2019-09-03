@@ -8,7 +8,7 @@ export interface homepage {
     des: string;
     btnTxt: string
   },
-  slider: {
+  sliderItems: {
     name: string;
     url: string;
   },
@@ -53,79 +53,146 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.http.get('https://identitycards-3b7a2.firebaseio.com/homePage.json').subscribe(
       (res: homepage) => {
+        console.log(res);
         this.welcome = res.welcome;
-        this.slider = res.slider;
+        this.slider = res.sliderItems;
         this.ourProduct = res.ourProduct;
         this.ourService = res.ourService;
         this.ourClient = res.ourClient;
         this.initForm();
-        console.log(res);
+        this.addSliderItem();
+        this.addProductItem();
+        this.addServiceItem();
+        this.addClientItem();
+        console.log(this.homeForm.value);
+        console.log([this.initItem()])
       }
     )
   }
 
 
   onSubmit() {
-    console.log(this.homeForm.value);
+    //console.log(this.homeForm.value);
+    this.http.put('https://identitycards-3b7a2.firebaseio.com/homePage.json', this.homeForm.value).subscribe(
+      (res: homepage) => {
+        console.log(res);
+      }
+    )
   }
 
-  get sliderItems() {
+  get sliderItemsArray() {
     return this.homeForm.get('sliderItems') as FormArray;
   }
 
+  initItem(name = '', url = '') {
+    return this.fb.group({
+      name: name,
+      url: url
+    })
+  }
+
+  addSliderItem() {
+    for (let i = 0; i < this.slider.length; i++) {
+      this.sliderItemsArray.push(this.initItem(this.slider[i].name, this.slider[i].url))
+    }
+  }
+
   addItem() {
-    this.sliderItems.push(this.fb.control(''));
+    this.sliderItemsArray.push(this.initItem());
   }
 
-  removeItem(index) {
-    this.sliderItems.removeAt(index);
+  removeItem(index: number) {
+    this.sliderItemsArray.removeAt(index);
   }
 
-  get productItems() {
-    return this.homeForm.get("productItems") as FormArray;
+  get productItemsArray() {
+    return this.homeForm.get("ourProduct.productItems") as FormArray;
+  }
+  initProduct(name = '', url = '', des = '') {
+    return this.fb.group({
+      name: name,
+      url: url,
+      des: des
+    })
+  }
+  addProductItem() {
+    for (let i = 0; i < this.ourProduct.productItems.length; i++) {
+      this.productItemsArray.push(this.initProduct(this.ourProduct.productItems[i].name, this.ourProduct.productItems[i].url, this.ourProduct.productItems[i].des))
+    }
   }
   addProduct() {
-    this.productItems.push(this.fb.control(''));
+    this.productItemsArray.push(this.initProduct());
   }
   removeProduct(index) {
-    this.productItems.removeAt(index);
+    this.productItemsArray.removeAt(index);
   }
 
-  get serviceItems() {
-    return this.homeForm.get("serviceItems") as FormArray;
+  get serviceItemsArray() {
+    return this.homeForm.get("ourService.serviceItems") as FormArray;
+  }
+  initService(name = '', icon = '', des = '') {
+    return this.fb.group({
+      name: name,
+      icon: icon,
+      des: des
+    })
+  }
+  addServiceItem() {
+    for (let i = 0; i < this.ourService.serviceItems.length; i++) {
+      this.serviceItemsArray.push(this.initService(this.ourService.serviceItems[i].name, this.ourService.serviceItems[i].icon, this.ourService.serviceItems[i].des))
+    }
   }
   addService() {
-    this.serviceItems.push(this.fb.control(''));
+    this.serviceItemsArray.push(this.initService());
   }
   removeService(index) {
-    this.serviceItems.removeAt(index);
+    this.serviceItemsArray.removeAt(index);
   }
 
-  get clientItems() {
-    return this.homeForm.get("clientItems") as FormArray;
+  get clientItemsArray() {
+    return this.homeForm.get("ourClient.clientItems") as FormArray;
+  }
+  initClient(name = '', url = '') {
+    return this.fb.group({
+      name: name,
+      url: url
+    })
+  }
+  addClientItem() {
+    for (let i = 0; i < this.ourClient.clientItems.length; i++) {
+      this.clientItemsArray.push(this.initClient(this.ourClient.clientItems[i].name, this.ourClient.clientItems[i].url))
+    }
   }
   addClient() {
-    this.clientItems.push(this.fb.control(''));
+    this.clientItemsArray.push(this.initClient());
   }
   removeClient(index) {
-    this.clientItems.removeAt(index);
+    this.clientItemsArray.removeAt(index);
   }
 
   private initForm() {
     this.homeForm = this.fb.group({
-      title: this.fb.control(this.welcome.title),
-      des: this.fb.control(this.welcome.des),
-      btnTxt: this.fb.control(this.welcome.btnTxt),
-      sliderItems: this.fb.array(this.slider),
-      pTitle: this.fb.control(this.ourProduct.title),
-      pDes: this.fb.control(this.ourProduct.des),
-      productItems: this.fb.array(this.ourProduct.products),
-      sTitle: this.fb.control(this.ourService.title),
-      sDes: this.fb.control(this.ourService.des),
-      serviceItems: this.fb.array(this.ourService.service),
-      cTitle: this.fb.control(this.ourClient.title),
-      cDes: this.fb.control(this.ourClient.des),
-      clientItems: this.fb.array(this.ourClient.client),
+      welcome: this.fb.group({
+        title: this.fb.control(this.welcome.title),
+        des: this.fb.control(this.welcome.des),
+        btnTxt: this.fb.control(this.welcome.btnTxt),
+      }),
+      sliderItems: this.fb.array([this.initItem()]),
+      ourProduct: this.fb.group({
+        title: this.fb.control(this.ourProduct.title),
+        des: this.fb.control(this.ourProduct.des),
+        productItems: this.fb.array([this.initProduct()]),
+      }),
+      ourService: this.fb.group({
+        title: this.fb.control(this.ourService.title),
+        des: this.fb.control(this.ourService.des),
+        serviceItems: this.fb.array([this.initService()]),
+      }),
+      ourClient: this.fb.group({
+        title: this.fb.control(this.ourClient.title),
+        des: this.fb.control(this.ourClient.des),
+        clientItems: this.fb.array([this.initClient()]),
+      })
     });
   }
 

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, forwardRef } from '@angular/core';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,7 +39,11 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [MatDatepickerModule],
+  providers: [MatDatepickerModule, {
+    provide: NG_VALUE_ACCESSOR,
+    multi: true,
+    useExisting: forwardRef(() => DashboardComponent),
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
