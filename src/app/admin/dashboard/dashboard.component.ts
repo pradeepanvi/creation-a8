@@ -15,17 +15,17 @@ export interface homepage {
   ourProduct: {
     title: string;
     des: string;
-    products: any;
+    productItems: any;
   },
   ourService: {
     title: string;
     des: string;
-    service: any;
+    serviceItems: any;
   },
   ourClient: {
     title: string;
     des: string;
-    client: any;
+    clientItems: any;
   }
 }
 
@@ -53,7 +53,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.http.get('https://identitycards-3b7a2.firebaseio.com/homePage.json').subscribe(
       (res: homepage) => {
-        console.log(res);
         this.welcome = res.welcome;
         this.slider = res.sliderItems;
         this.ourProduct = res.ourProduct;
@@ -64,15 +63,12 @@ export class DashboardComponent implements OnInit {
         this.addProductItem();
         this.addServiceItem();
         this.addClientItem();
-        console.log(this.homeForm.value);
-        console.log([this.initItem()])
       }
     )
   }
 
 
   onSubmit() {
-    //console.log(this.homeForm.value);
     this.http.put('https://identitycards-3b7a2.firebaseio.com/homePage.json', this.homeForm.value).subscribe(
       (res: homepage) => {
         console.log(res);
@@ -93,8 +89,9 @@ export class DashboardComponent implements OnInit {
 
   addSliderItem() {
     for (let i = 0; i < this.slider.length; i++) {
-      this.sliderItemsArray.push(this.initItem(this.slider[i].name, this.slider[i].url))
+      this.sliderItemsArray.push(this.initItem(this.slider[i].name, this.slider[i].url));
     }
+    console.log(this.sliderItemsArray);
   }
 
   addItem() {
@@ -177,21 +174,21 @@ export class DashboardComponent implements OnInit {
         des: this.fb.control(this.welcome.des),
         btnTxt: this.fb.control(this.welcome.btnTxt),
       }),
-      sliderItems: this.fb.array([this.initItem()]),
+      sliderItems: this.fb.array([]),
       ourProduct: this.fb.group({
         title: this.fb.control(this.ourProduct.title),
         des: this.fb.control(this.ourProduct.des),
-        productItems: this.fb.array([this.initProduct()]),
+        productItems: this.fb.array([]),
       }),
       ourService: this.fb.group({
         title: this.fb.control(this.ourService.title),
         des: this.fb.control(this.ourService.des),
-        serviceItems: this.fb.array([this.initService()]),
+        serviceItems: this.fb.array([]),
       }),
       ourClient: this.fb.group({
         title: this.fb.control(this.ourClient.title),
         des: this.fb.control(this.ourClient.des),
-        clientItems: this.fb.array([this.initClient()]),
+        clientItems: this.fb.array([]),
       })
     });
   }

@@ -3,7 +3,7 @@
         <div class="cell_t">
             <h1>{{welcome.title}}</h1>
             <p [innerHtml]="welcome.des"></p>
-            <a class="btn  btn-success" routerLink="shop">{{welcome.btnTxt}}</a>
+            <a class="btn  btn-success" routerLink="admin">{{welcome.btnTxt}}</a>
         </div>
     </div><a class="go_down" href="#samples"></a>
 </div>
@@ -25,7 +25,7 @@
             <p>{{ourProduct.des}}</p>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-md-3" *ngFor="let product of ourProduct.products">
+            <div class="col-sm-6 col-md-3" *ngFor="let product of ourProduct.productItems">
                 <aside>
                     <div class="img_area"><img [src]="product.url" [alt]="product.name"></div>
                     <div class="txt_area">
@@ -43,7 +43,7 @@
             <h2>{{ourService.title}}</h2>
             <p>{{ourService.des}}</p>
         </div>
-        <div class="round table_t" *ngFor="let service of ourService.service">
+        <div class="round table_t" *ngFor="let service of ourService.serviceItems">
             <div class="clearfix cell_t"><i [class]="service.icon"></i>
                 <h3>{{service.name}}</h3>
                 <p>{{service.des}}</p>
@@ -58,7 +58,7 @@
             <p>{{ourClient.des}}</p>
         </div>
         <ul>
-            <li *ngFor="let client of ourClient.client">
+            <li *ngFor="let client of ourClient.clientItems">
                 <aside><img [src]="client.url" [alt]="client.name"></aside>
             </li>
         </ul>
@@ -73,19 +73,19 @@
         <div class="form_sec col-md-8 offset-md-2">
             <form [formGroup]="askQF" class="bottomform" (ngSubmit)="onSubmit()">
                 <aside>
-                    <input class="form-control form-control-big" type="text" name="name" placeholder="Name"><span
-                        class="help-block name">Please enter your Name</span>
+                    <input class="form-control form-control-big" type="text" formControlName="name"
+                        placeholder="Name"><span class="help-block name">Please enter your Name</span>
                 </aside>
                 <aside>
-                    <input class="form-control form-control-big" type="text" name="mail" placeholder="Email"><span
-                        class="help-block mail">Please enter Email ID</span>
+                    <input class="form-control form-control-big" type="text" formControlName="mail"
+                        placeholder="Email"><span class="help-block mail">Please enter Email ID</span>
                 </aside>
                 <aside>
-                    <input class="form-control form-control-big" type="text" name="phone" placeholder="Phone"><span
-                        class="help-block phone">Please enter number only</span>
+                    <input class="form-control form-control-big" type="text" formControlName="phone"
+                        placeholder="Phone"><span class="help-block phone">Please enter number only</span>
                 </aside>
                 <aside>
-                    <textarea class="form-control form-control-big" type="text" name="msg"
+                    <textarea class="form-control form-control-big" type="text" formControlName="msg"
                         placeholder="Message"></textarea><span class="help-block msg">Please enter any
                         message</span>
                 </aside>
