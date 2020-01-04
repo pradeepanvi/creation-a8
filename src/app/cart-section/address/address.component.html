@@ -1,0 +1,25 @@
+<h2>Slider</h2>
+<div class="row">
+    <div *ngFor="let address of addressList; let i=index" class="col-sm-4 mb-4">
+        <div class="p-2 border">
+            <h3>{{address.name}}</h3>
+            <p>{{address.address1}}<br>
+                {{address.address2}}<br>
+                {{address.city | uppercase}}, {{address.state | uppercase}} {{address.pincode}}<br>
+                India</p>
+            <div class="example-container mb-2">
+                <button mat-raised-button matSuffix color="primary" (click)="setAddress(i)">Deliver to this
+                    address</button>
+            </div>
+            <div class="example-container mb-2 button-group">
+                <button mat-raised-button matSuffix (click)="editAddress(i)">Edit</button>
+                <button mat-raised-button matSuffix (click)="deleteAddress(i)">Delete</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 mb-4">
+        <div class="p-2 border">
+            <button mat-raised-button matSuffix color="primary" (click)="addNewAddress()">Add new address</button>
+        </div>
+    </div>
+</div>

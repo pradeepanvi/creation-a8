@@ -278,3 +278,24 @@ div.wpcf7{
 .mat-tab-body{
     padding: 20px;
 }
+
+h1{
+    margin-bottom: 50px;
+}
+.cart-link {
+    position: relative;
+    padding: 0 5px;
+    &:after{
+        content:'';
+        position:absolute;
+        background:#292929;
+        top: -15px;
+        left:0;
+        right:0;
+        bottom: -8px;
+        z-index: -1;
+    }
+    a{
+      color: $orange-color2 !important;
+    }
+}

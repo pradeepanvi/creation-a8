@@ -1,0 +1,44 @@
+<h1>{{title}}</h1>
+<form [formGroup]="cartForm" (ngSubmit)="onSubmit()">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Model</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Total</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody formArrayName="cartItems">
+      <tr *ngFor="let cart of cartItemsArray.controls; let i=index" [formGroupName]="i">
+        <th scope="row">{{i}}</th>
+        <td><input class="form-control" formControlName="name" disabled></td>
+        <td><input class="form-control" formControlName="model" disabled></td>
+        <td><input class="form-control" formControlName="quantity"></td>
+        <td><input class="form-control" formControlName="price" disabled></td>
+        <td><input class="form-control" formControlName="total" [value]="cart.value.quantity * cart.value.price"
+            disabled></td>
+        <td>
+          <button mat-raised-button color="warn" (click)="removeCart(i)"><i class="material-icons">
+              cancel
+            </i></button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4">Total</td>
+        <td>{{subTotal}}</td>
+        <td>{{priceTotal}}</td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+  <div class="d-flex mb-4">
+    <button type="button" mat-raised-button class="ml-auto" (click)="continueShop()">Continue Shopping</button>
+    <button type="submit" mat-raised-button color="primary">Checkout</button>
+  </div>
+</form>

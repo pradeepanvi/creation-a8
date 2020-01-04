@@ -1,0 +1,20 @@
+.material-icons{
+    color: #fff;
+}
+table{
+    margin-bottom: 20px;
+    tfoot{
+        font-weight: bold;
+    }
+}
+.d-flex{
+    button{
+        margin-left: 10px;
+    }
+}
+.form-control{
+    &:disabled{
+        background: transparent;
+        border-color: transparent;
+    }
+}

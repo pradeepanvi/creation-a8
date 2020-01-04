@@ -1,0 +1,12 @@
+<div class="col-md-4 offset-md-4">
+    <h2>PayTM Order ID</h2>
+    <p>Enter your paytm order id here</p>
+    <form [formGroup]="orderidForm" (ngSubmit)="onSubmit()">
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput formControlName="orderid" placeholder="PayTM Order ID">
+            </mat-form-field>
+            <button mat-raised-button color="primary">Submit</button>
+        </div>
+    </form>
+</div>

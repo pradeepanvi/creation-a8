@@ -1,0 +1,28 @@
+<h2>Confirm Order</h2>
+<p>Confirm your order before place</p>
+<div class="row">
+    <div class="col-md-8">
+        <div class="border p-4 mb-2">
+            <h3>Shipping Address</h3>
+            <p>{{address.name}}</p>
+            <p>{{address.address1}}</p>
+            <p>{{address.landmark}}, {{address.address2}}</p>
+            <p>{{address.city}}, {{address.state}} {{address.pincode}}</p>
+        </div>
+        <div class="border p-4 mb-2">
+            <h3>PayTM Order ID: {{orderId.orderid}}</h3>
+        </div>
+        <div class="border p-4 mb-2" *ngFor="let cart of cartItems;">
+            <h3>{{cart.name}}</h3>
+            <p>{{cart.model}}</p>
+            <p>Quantity: {{cart.quantity}}</p>
+            <p>{{cart.total}}</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="border p-4 mb-2 example-container">
+            <h2>Total Price: {{total}}</h2>
+            <button mat-raised-button color="primary" (click)="place()">Place Order</button>
+        </div>
+    </div>
+</div>

@@ -120,6 +120,111 @@
             <button type="submit" mat-raised-button color="primary">Submit</button>
         </form>
     </mat-tab>
-    <mat-tab label="Second"> Content 2 </mat-tab>
-    <mat-tab label="Third"> Content 3 </mat-tab>
+    <mat-tab label="Shop">
+        <form [formGroup]="shopForm" class="example-form" (ngSubmit)="onShopSubmit()">
+            <div class="col border shadow mb-5 p-4">
+                <h2>Dori</h2>
+                <div formArrayName="doriItems" class="row">
+                    <div *ngFor="let item of doriItemsArray.controls; let i=index" class="col-sm-4" [formGroupName]="i">
+                        <div class="p-2 border mb-4">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Title" formControlName="name">
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Image URL" formControlName="imgURL">
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width">
+                                <textarea matInput placeholder="Des" formControlName="des">{{item.des}}</textarea>
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Price" formControlName="price">
+                            </mat-form-field>
+                            <button mat-button matSuffix color="warn" (click)="removeDori(i)">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button mat-raised-button matSuffix color="primary" (click)="addDori()">Add Dori</button>
+            </div>
+            <div class="col border shadow mb-5 p-4">
+                <h2>Lanyard</h2>
+                <div formArrayName="lanyardItems" class="row">
+                    <div *ngFor="let item of lanyardItemsArray.controls; let i=index" class="col-sm-4"
+                        [formGroupName]="i">
+                        <div class="p-2 border mb-4">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Title" formControlName="name">
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Image URL" formControlName="imgURL">
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width">
+                                <textarea matInput placeholder="Des" formControlName="des">{{item.des}}</textarea>
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Price" formControlName="price">
+                            </mat-form-field>
+                            <button mat-button matSuffix color="warn" (click)="removeDori(i)">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button mat-raised-button matSuffix color="primary" (click)="addDori()">Add Dori</button>
+            </div>
+            <div class="col border shadow mb-5 p-4">
+                <h2>Holder</h2>
+                <div formArrayName="holderItems" class="row">
+                    <div *ngFor="let item of holderItemsArray.controls; let i=index" class="col-sm-4"
+                        [formGroupName]="i">
+                        <div class="p-2 border mb-4">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Title" formControlName="name">
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Image URL" formControlName="imgURL">
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width">
+                                <textarea matInput placeholder="Des" formControlName="des">{{item.des}}</textarea>
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Price" formControlName="price">
+                            </mat-form-field>
+                            <button mat-button matSuffix color="warn" (click)="removeDori(i)">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button mat-raised-button matSuffix color="primary" (click)="addDori()">Add Dori</button>
+            </div>
+            <div class="col border shadow mb-5 p-4">
+                <h2>Card</h2>
+                <div formArrayName="cardItems" class="row">
+                    <div *ngFor="let item of cardItemsArray.controls; let i=index" class="col-sm-4" [formGroupName]="i">
+                        <div class="p-2 border mb-4">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Title" formControlName="name">
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Image URL" formControlName="imgURL">
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width">
+                                <textarea matInput placeholder="Des" formControlName="des">{{item.des}}</textarea>
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Price" formControlName="price">
+                            </mat-form-field>
+                            <button mat-button matSuffix color="warn" (click)="removeDori(i)">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button mat-raised-button matSuffix color="primary" (click)="addDori()">Add Dori</button>
+            </div>
+            <button type="submit" mat-raised-button color="primary">Submit</button>
+        </form>
+    </mat-tab>
 </mat-tab-group>

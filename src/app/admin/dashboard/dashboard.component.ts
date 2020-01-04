@@ -29,6 +29,12 @@ export interface homepage {
   }
 }
 
+export interface shoppage {
+  doriItems: any;
+  holderItems: any;
+  cardItems: any;
+  lanyardItems: any;
+}
 
 @Component({
   selector: 'app-dashboard',
@@ -42,10 +48,16 @@ export class DashboardComponent implements OnInit {
   ourService: any;
   ourClient: any;
   homeForm: FormGroup;
+  shopForm: FormGroup;
   slider_items: {
     name: string,
     url: string
   }[];
+
+  doriItems: any;
+  holderItems: any;
+  cardItems: any;
+  lanyardItems: any;
 
   constructor(private http: HttpClient, private fb: FormBuilder) {
   }
@@ -63,6 +75,19 @@ export class DashboardComponent implements OnInit {
         this.addProductItem();
         this.addServiceItem();
         this.addClientItem();
+      }
+    )
+    this.http.get('https://identitycards-3b7a2.firebaseio.com/shopPage.json').subscribe(
+      (res2: shoppage) => {
+        this.doriItems = res2.doriItems;
+        this.holderItems = res2.holderItems;
+        this.lanyardItems = res2.lanyardItems;
+        this.cardItems = res2.cardItems;
+        this.shopinitForm();
+        this.addDoriItem();
+        this.addHolderItem();
+        this.addLanyardItem();
+        this.addCardItem();
       }
     )
   }
@@ -91,7 +116,6 @@ export class DashboardComponent implements OnInit {
     for (let i = 0; i < this.slider.length; i++) {
       this.sliderItemsArray.push(this.initItem(this.slider[i].name, this.slider[i].url));
     }
-    console.log(this.sliderItemsArray);
   }
 
   addItem() {
@@ -191,6 +215,132 @@ export class DashboardComponent implements OnInit {
         clientItems: this.fb.array([]),
       })
     });
+  }
+
+  onShopSubmit() {
+    console.log(this.shopForm.value);
+    this.http.put('https://identitycards-3b7a2.firebaseio.com/shopPage.json', this.shopForm.value).subscribe(
+      (res) => {
+        console.log(res);
+      }
+    )
+  }
+
+  get doriItemsArray() {
+    return this.shopForm.get('doriItems') as FormArray;
+  }
+
+  initDoriItem(name = '', url = '', des = '', price = '') {
+    return this.fb.group({
+      name: name,
+      imgURL: url,
+      des: des,
+      price: price
+    })
+  }
+
+  addDoriItem() {
+    for (let i = 0; i < this.doriItems.length; i++) {
+      this.doriItemsArray.push(this.initDoriItem(this.doriItems[i].name, this.doriItems[i].imgURL, this.doriItems[i].des, this.doriItems[i].price));
+    }
+  }
+
+  addDori() {
+    this.doriItemsArray.push(this.initDoriItem());
+  }
+
+  removeDori(index: number) {
+    this.doriItemsArray.removeAt(index);
+  }
+
+  get holderItemsArray() {
+    return this.shopForm.get('holderItems') as FormArray;
+  }
+
+  initHolderItem(name = '', url = '', des = '', price = '') {
+    return this.fb.group({
+      name: name,
+      imgURL: url,
+      des: des,
+      price: price
+    })
+  }
+
+  addHolderItem() {
+    for (let i = 0; i < this.holderItems.length; i++) {
+      this.holderItemsArray.push(this.initDoriItem(this.holderItems[i].name, this.holderItems[i].imgURL, this.doriItems[i].des, this.holderItems[i].price));
+    }
+  }
+
+  addHolder() {
+    this.holderItemsArray.push(this.initDoriItem());
+  }
+
+  removeHolder(index: number) {
+    this.holderItemsArray.removeAt(index);
+  }
+
+  get lanyardItemsArray() {
+    return this.shopForm.get('lanyardItems') as FormArray;
+  }
+
+  initLanyardItem(name = '', url = '', des = '', price = '') {
+    return this.fb.group({
+      name: name,
+      imgURL: url,
+      des: des,
+      price: price
+    })
+  }
+
+  addLanyardItem() {
+    for (let i = 0; i < this.lanyardItems.length; i++) {
+      this.lanyardItemsArray.push(this.initLanyardItem(this.lanyardItems[i].name, this.lanyardItems[i].imgURL, this.lanyardItems[i].des, this.lanyardItems[i].price));
+    }
+  }
+
+  addLanyard() {
+    this.lanyardItemsArray.push(this.initLanyardItem());
+  }
+
+  removeLanyard(index: number) {
+    this.lanyardItemsArray.removeAt(index);
+  }
+
+  get cardItemsArray() {
+    return this.shopForm.get('cardItems') as FormArray;
+  }
+
+  initCardItem(name = '', url = '', des = '', price = '') {
+    return this.fb.group({
+      name: name,
+      imgURL: url,
+      des: des,
+      price: price
+    })
+  }
+
+  addCardItem() {
+    for (let i = 0; i < this.cardItems.length; i++) {
+      this.cardItemsArray.push(this.initCardItem(this.cardItems[i].name, this.cardItems[i].imgURL, this.cardItems[i].des, this.cardItems[i].price));
+    }
+  }
+
+  addCard() {
+    this.cardItemsArray.push(this.initCardItem());
+  }
+
+  removeCard(index: number) {
+    this.cardItemsArray.removeAt(index);
+  }
+
+  private shopinitForm() {
+    this.shopForm = this.fb.group({
+      doriItems: this.fb.array([]),
+      holderItems: this.fb.array([]),
+      lanyardItems: this.fb.array([]),
+      cardItems: this.fb.array([])
+    })
   }
 
 }
